@@ -82,25 +82,28 @@ x = tf.keras.layers.experimental.preprocessing.RandomRotation(factor=(-0.025, 0.
 
 * 1.2.2. Поворот изображения на случайный угол с использованием параметра режим заполнения fill_mode:
 
-![1](https://user-images.githubusercontent.com/59210216/112892004-792d8600-90e1-11eb-8478-94fb9a0e0294.jpg)
+##### Хочется отметить, что наравне с параметром factor, также имеют место и другие параметры, такие как fill_mode, interpolation, seed и т.д. Используя полученное оптимальное значение factor, в данном пункте был использован параметр fill_mode (точки за пределами ввода). Данные точки заполняются в соответствии с одним из заданных режимов: 
+
+* 'constant' - входные данные расширяются путем заполнения всех значений за пределами края одним и тем же постоянным значением k = 0;
+* 'reflect' - входные данные расширяются за счет отражения около края последнего пикселя;
+* 'wrap' - входные данные расширяются за счет перехода к противоположному краю;
+* 'nearest' - входные данные расширяются до ближайшего пикселя.
+
+**График метрики точности:**
 
 ![2](https://user-images.githubusercontent.com/59210216/112892025-7fbbfd80-90e1-11eb-964b-a1802b1a1794.jpg)
 
-![3](https://user-images.githubusercontent.com/59210216/112892050-8480b180-90e1-11eb-982a-e0acc17f6bf9.jpg)
+![1](https://user-images.githubusercontent.com/59210216/112892004-792d8600-90e1-11eb-8478-94fb9a0e0294.jpg)
+
+**График функции потерь:**
 
 ![4](https://user-images.githubusercontent.com/59210216/112892056-877ba200-90e1-11eb-894b-d37c7644c413.jpg)
 
-* 1.3. Использование случайной части изображения:
+![3](https://user-images.githubusercontent.com/59210216/112892050-8480b180-90e1-11eb-982a-e0acc17f6bf9.jpg)
 
-![1](https://user-images.githubusercontent.com/59210216/112892077-8e0a1980-90e1-11eb-8d4f-a022a2c38c92.jpg)
+### Анализ полученных результатов:
 
-![2](https://user-images.githubusercontent.com/59210216/112892099-95312780-90e1-11eb-8057-060d4a0c3f12.jpg)
-
-![3](https://user-images.githubusercontent.com/59210216/112892113-98c4ae80-90e1-11eb-82c5-4267994b0dde.jpg)
-
-![4](https://user-images.githubusercontent.com/59210216/112892122-9bbf9f00-90e1-11eb-8ed6-e0719ca91765.jpg)
-
-* 1.4. Добавление случайного шума:
+* 1.3. Добавление случайного шума:
 
 ![1](https://user-images.githubusercontent.com/59210216/112892150-a417da00-90e1-11eb-900f-1d0dbc14ca78.jpg)
 
@@ -111,6 +114,15 @@ x = tf.keras.layers.experimental.preprocessing.RandomRotation(factor=(-0.025, 0.
 ![4](https://user-images.githubusercontent.com/59210216/112892177-ab3ee800-90e1-11eb-88f6-ce7421ae168b.jpg)
 
 
+* 1.4. Использование случайной части изображения:
+
+![1](https://user-images.githubusercontent.com/59210216/112892077-8e0a1980-90e1-11eb-8d4f-a022a2c38c92.jpg)
+
+![2](https://user-images.githubusercontent.com/59210216/112892099-95312780-90e1-11eb-8057-060d4a0c3f12.jpg)
+
+![3](https://user-images.githubusercontent.com/59210216/112892113-98c4ae80-90e1-11eb-82c5-4267994b0dde.jpg)
+
+![4](https://user-images.githubusercontent.com/59210216/112892122-9bbf9f00-90e1-11eb-8ed6-e0719ca91765.jpg)
 
 ### 2. Для каждой индивидуальной техники аугментации определить оптимальный набор параметров:
 
