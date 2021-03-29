@@ -105,24 +105,68 @@ x = tf.keras.layers.experimental.preprocessing.RandomRotation(factor=(-0.025, 0.
 
 * 1.3. Добавление случайного шума:
 
-![1](https://user-images.githubusercontent.com/59210216/112892150-a417da00-90e1-11eb-900f-1d0dbc14ca78.jpg)
+##### Для реализации данного способа был добавлен слой:
+```
+x = tf.keras.layers.GaussianNoise(0.01)(inputs)
+```
+или в общем виде:
+```
+tf.keras.layers.GaussianNoise(stddev), где stddev - среднеквадратичного отклонения добавляемого шума.
+```
+##### Для нахождения оптимальных значений мною были выбраны следующие параметры:
 
-![2](https://user-images.githubusercontent.com/59210216/112892160-a712ca80-90e1-11eb-8b7d-315c8e87a5d8.jpg)
+* stddev = 0.01; 
+* stddev = 0.05;
+* stddev = 0.1; 
+* stddev = 0.5; 
+* stddev = 1;
 
-![3](https://user-images.githubusercontent.com/59210216/112892166-a9752480-90e1-11eb-98c1-fe7b07921e05.jpg)
-
-![4](https://user-images.githubusercontent.com/59210216/112892177-ab3ee800-90e1-11eb-88f6-ce7421ae168b.jpg)
-
-
-* 1.4. Использование случайной части изображения:
-
-![1](https://user-images.githubusercontent.com/59210216/112892077-8e0a1980-90e1-11eb-8d4f-a022a2c38c92.jpg)
+**График метрики точности:**
 
 ![2](https://user-images.githubusercontent.com/59210216/112892099-95312780-90e1-11eb-8057-060d4a0c3f12.jpg)
 
-![3](https://user-images.githubusercontent.com/59210216/112892113-98c4ae80-90e1-11eb-82c5-4267994b0dde.jpg)
+![1](https://user-images.githubusercontent.com/59210216/112892077-8e0a1980-90e1-11eb-8d4f-a022a2c38c92.jpg)
+
+**График функции потерь:**
 
 ![4](https://user-images.githubusercontent.com/59210216/112892122-9bbf9f00-90e1-11eb-8ed6-e0719ca91765.jpg)
+
+![3](https://user-images.githubusercontent.com/59210216/112892113-98c4ae80-90e1-11eb-82c5-4267994b0dde.jpg)
+
+### Анализ полученных результатов:
+
+* 1.4. Использование случайной части изображения:
+
+##### В данном пункте мы использовали технику аугментации изображений путем использования случайной части изображения. Для реализации данного способа были добавлены слои:
+
+```
+x = tf.keras.layers.experimental.preprocessing.Resizing(250,250)(inputs)
+x = tf.keras.layers.experimental.preprocessing.RandomCrop(224,224)(x)
+```
+или в общем виде:
+```
+tf.keras.layers.experimental.preprocessing.RandomCrop(height, width), где height и width - высота и ширина соответсвенно.
+```
+##### Для нахождения оптимальных значений мною были выбраны следующие параметры:
+
+* RandomCrop(100,100), Resizing(224,224);
+* RandomCrop(112,112), Resizing(224,224);
+* RandomCrop(150,150), Resizing(224,224);
+* RandomCrop(200,200), Resizing(224,224);
+
+**График метрики точности:**
+
+![2](https://user-images.githubusercontent.com/59210216/112892160-a712ca80-90e1-11eb-8b7d-315c8e87a5d8.jpg)
+
+![1](https://user-images.githubusercontent.com/59210216/112892150-a417da00-90e1-11eb-900f-1d0dbc14ca78.jpg)
+
+**График функции потерь:**
+
+![4](https://user-images.githubusercontent.com/59210216/112892177-ab3ee800-90e1-11eb-88f6-ce7421ae168b.jpg)
+
+![3](https://user-images.githubusercontent.com/59210216/112892166-a9752480-90e1-11eb-98c1-fe7b07921e05.jpg)
+
+### Анализ полученных результатов:
 
 ### 2. Для каждой индивидуальной техники аугментации определить оптимальный набор параметров:
 
