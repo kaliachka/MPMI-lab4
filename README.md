@@ -4,15 +4,47 @@
 ---
 ### 1. С использованием, техники обучения Transfer Learning и оптимальной политики изменения темпа обучения обучить нейронную сеть EfficientNet-B0 (предварительно обученную на базе изображений imagenet) для решения задачи классификации изображений Oregon WildLife с использованием следующих техник аугментации данных:
 
-* 1.1. Манипуляции с яркостью и контрастом:
+#### Аугментация данных (англ. data augmentation) — это методика создания дополнительных данных из имеющихся данных.
 
-![1](https://user-images.githubusercontent.com/59210216/112891891-569b6d00-90e1-11eb-8e33-98bc49e92090.jpg)
+* 1.1. Манипуляции с яркостью и контрастом:
+##### В первом пункт емы использовали технику аугментации изображений путем манипуляции с яркостью и контрастом. Для реализации данного способа были написаны функции:
+```
+def contrast(image, label):
+    return tf.image.adjust_contrast(image, 0.4), label
+
+def brightness(image, label):
+    return tf.image.adjust_brightness(image, delta=0.1), label
+```
+#####  Функция contrast возвращает tf.image.adjust_contrast(image, contrast_factor), где параметр image - входное изображение и contrast_factor - множитель типа float для регулировки контраста. Функция brightness возвращает tf.image.adjust_brightness(image, delta), где параметр image - входное изображение и delta - скалярная величина, добавляемая к значениям пикселей.
+
+##### Функция вызывается в TFRecordDataset:
+
+```
+return tf.data.TFRecordDataset(filenames)\
+    .map(contrast)\
+    .map(brightness)\
+```
+##### Для нахождения оптимальных значений мною были выбраны следующие параметры:
+
+* contrast_factor = 0.4, delta = 0.1;
+* contrast_factor = 0.5, delta = 0.05;
+* contrast_factor = 0.5, delta = 0.1;
+* contrast_factor = 0.5, delta = 0.2;
+* contrast_factor = 1, delta = 1;
+* contrast_factor = 3, delta = 0.5;
+* contrast_factor = 5, delta = 0.1;
+
+**График метрики точности:**
 
 ![2](https://user-images.githubusercontent.com/59210216/112891910-5ac78a80-90e1-11eb-8d88-f346bc7d0fe8.jpg)
 
-![3](https://user-images.githubusercontent.com/59210216/112891917-5e5b1180-90e1-11eb-98ce-dcc23772a265.jpg)
+![1](https://user-images.githubusercontent.com/59210216/112891891-569b6d00-90e1-11eb-8e33-98bc49e92090.jpg)
+
+**График функции потерь:**
 
 ![4](https://user-images.githubusercontent.com/59210216/112891925-61560200-90e1-11eb-8cdc-35633ac32de9.jpg)
+
+![3](https://user-images.githubusercontent.com/59210216/112891917-5e5b1180-90e1-11eb-98ce-dcc23772a265.jpg)
 
 * 1.2.1. Поворот изображения на случайный угол:
 
