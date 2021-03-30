@@ -213,15 +213,15 @@ tf.keras.layers.experimental.preprocessing.RandomCrop(height, width), где hei
     
 **График метрики точности:**
 
-![1-1](https://user-images.githubusercontent.com/59210216/112919007-db50b000-910e-11eb-8f69-e726fd9d3fd9.jpg)
+![image](https://user-images.githubusercontent.com/59210216/112927858-553c6580-911e-11eb-8972-0f9117133b45.png)
 
-![2-1](https://user-images.githubusercontent.com/59210216/112919036-e572ae80-910e-11eb-9214-f24de73845ea.jpg)
+![image](https://user-images.githubusercontent.com/59210216/112927780-350ca680-911e-11eb-85c7-5dd8af68e5bf.png)
 
 **График функции потерь:**
 
-![3-1](https://user-images.githubusercontent.com/59210216/112919044-e99ecc00-910e-11eb-8838-9466214a336f.jpg)
+![image](https://user-images.githubusercontent.com/59210216/112927972-82891380-911e-11eb-8c70-150f3c3d3b87.png)
 
-![4-1](https://user-images.githubusercontent.com/59210216/112919052-eefc1680-910e-11eb-92a5-785258bedd1f.jpg)
+![image](https://user-images.githubusercontent.com/59210216/112927926-72713400-911e-11eb-9bab-1e031a1575df.png)
 
 #### Анализ полученных результатов:
 Анализируя приведенные выше графики можно отметить, что совместное применение техник аугментации данных с оптимальными для каждого из случаев значениями весьма положительно влияет на обучение нейронной сети, ведь:
